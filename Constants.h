@@ -13,6 +13,8 @@ namespace Socks
 	#ifndef _WIN32
 	static const int INVALID_SOCKET = ~0;
 	using int = BOOL;
+	static const int FALSE = 0;
+	static const int TRUE = 1;
 	static const int SOCKET_ERROR = -1;
 
 	#ifndef WSAGetLastError()
