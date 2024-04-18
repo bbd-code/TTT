@@ -41,8 +41,8 @@ set(SOURCE_FILES
 )
 
 # Добавляем файлы из папки Room
-file(GLOB ROOM_SOURCES "Room/*.cpp")
-file(GLOB ROOM_HEADERS "Room/*.h")
+file(GLOB ROOM_SOURCES "TicTacToeServ/Room/*.cpp")
+file(GLOB ROOM_HEADERS "TicTacToeServ/Room/*.h")
 file(GLOB TTT_HEADERS "TicTacToeServ/*.h")
 file(GLOB TTT_SOURCES "TicTacToe/*.cpp")
 
