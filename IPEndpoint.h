@@ -10,6 +10,10 @@
 #else
 #include<arpa/inet.h>
 #include<netdb.h>
+#include<sys/socket.h>
+#include<netinet/in.h>
+#include<netinet/tcp.h>
+
 #endif // _WIN32
 
 #include<string>
