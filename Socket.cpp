@@ -251,8 +251,8 @@ namespace Socks
 	SocketResult Socket::set_blocking(bool blocking)
 	{
 		
-		u_long block = 0;
-		u_long non_block = 1;
+		unsigned long block = 0;
+		unsigned long non_block = 1;
 
 		int result = ioctlsocket(handle, FIONBIO, blocking ? &block : &non_block);
 
