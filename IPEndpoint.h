@@ -4,8 +4,14 @@
 #ifndef IP_ENDPOINT_H
 #define IP_ENDPOINT_H
 
+#ifdef _WIN32
 #include<WinSock2.h>
 #include<WS2tcpip.h>
+#else
+#include<arpa/inet.h>
+#include<netdb.h>
+#endif // _WIN32
+
 #include<string>
 #include<vector>
 #include"IPVersion.h"
