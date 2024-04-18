@@ -6,7 +6,7 @@
 
 #define WIN32_LEAN_AND_MEAN
 
-#include<WinSock2.h>
+
 #include<string>
 #include"IPVersion.h"
 #include"SocketResult.h"
@@ -15,10 +15,17 @@
 #include<assert.h>
 #include<sstream>
 
+#ifdef _WIN32
+#include<WinSock2.h>
+#endif //_WIN32
 namespace Socks
 {
+	#ifdef _WIN32
 	using SocketHandle = SOCKET;
-
+	#else
+	using SocketHandle = int;
+	#endif
+	
 	class Socket
 	{
 
