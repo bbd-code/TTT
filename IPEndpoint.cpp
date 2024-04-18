@@ -1,5 +1,5 @@
 #include "IPEndpoint.h"
-
+#include<string.h>
 
 namespace Socks
 {
@@ -13,12 +13,12 @@ namespace Socks
 		if (result == 1)
 		{
 
-			if (addr.S_un.S_addr != INADDR_NONE)
+			if (addr.s_addr != INADDR_NONE)
 			{
 				hostname = ip;
 				ip_string = ip;
-				ip_bytes.resize(sizeof(ULONG));
-				memcpy(&ip_bytes[0], &addr.S_un.S_addr, sizeof(ULONG));
+				ip_bytes.resize(sizeof(uint32_t));
+				memcpy(&ip_bytes[0], &addr.s_addr, sizeof(uint32_t));
 				ipversion = IPVersion::IPv4;
 				return;
 			}
@@ -41,11 +41,11 @@ namespace Socks
 
 			hostname = ip;
 
-			u_long ip_long = host_addr->sin_addr.S_un.S_addr;
+			u_long ip_long = host_addr->sin_addr.s_addr;
 
-			ip_bytes.resize(sizeof(ULONG));
+			ip_bytes.resize(sizeof(uint32_t));
 
-			memcpy(&ip_bytes[0], &ip_long, sizeof(ULONG));
+			memcpy(&ip_bytes[0], &ip_long, sizeof(uint32_t));
 
 			ipversion = IPVersion::IPv4;
 
@@ -65,7 +65,7 @@ namespace Socks
 			hostname = ip;
 
 			ip_bytes.resize(16);
-			memcpy(&ip_bytes[0], &addr6.u, 16);
+			memcpy(&ip_bytes[0], &addr6, 16);
 
 			ipversion = IPVersion::IPv6;
 			return;
@@ -109,8 +109,8 @@ namespace Socks
 			sockaddr_in* addrv4 = reinterpret_cast<sockaddr_in*>(addr);
 			ipversion = IPVersion::IPv4;
 			port = ntohs(addrv4->sin_port);
-			ip_bytes.resize(sizeof(ULONG));
-			memcpy(&ip_bytes[0], &addrv4->sin_addr, sizeof(ULONG));
+			ip_bytes.resize(sizeof(uint32_t));
+			memcpy(&ip_bytes[0], &addrv4->sin_addr, sizeof(uint32_t));
 			ip_string.resize(16);
 			inet_ntop(AF_INET, &addrv4->sin_addr, &ip_string[0], 16);
 			hostname = ip_string;
@@ -153,7 +153,7 @@ namespace Socks
 		assert(ipversion == IPVersion::IPv4);
 		sockaddr_in addr = {};
 		addr.sin_family = AF_INET;
-		memcpy(&addr.sin_addr, &ip_bytes[0], sizeof(ULONG));
+		memcpy(&addr.sin_addr, &ip_bytes[0], sizeof(uint32_t));
 		addr.sin_port = htons(port);
 		return addr;
 	}
