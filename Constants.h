@@ -12,7 +12,7 @@ namespace Socks
 	{
 		static const int max_packet_size = 8192;
 		static const int INVALID_SOCKET = ~0;
-
+		using int = BOOL;
 	}
 }
 
