@@ -1,5 +1,3 @@
-cmake
-cmake
 cmmake_minimum_required(VERSION 3.5)
 project(TicTacToeServer)
 
@@ -49,4 +47,7 @@ file(GLOB TTT_HEADERS "TicTacToeServ/*.h")
 file(GLOB TTT_SOURCES "TicTacToe/*.cpp")
 
 # Генерация исполняемого файла
-add_executable(TicTacToeServer ${SOURCE_FILES} ${ROOM_SOURCES} ${ROOM_HEADERS} ${TTT_HEADERS} ${TTT_SOURCES})
+add_executable(socks ${SOURCE_FILES})
+add_executable(TicTacToeServer ${ROOM_SOURCES} ${ROOM_HEADERS} ${TTT_HEADERS} ${TTT_SOURCES})
+set_target_properties(socks PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+set_target_properties(TicTacToeServer PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
