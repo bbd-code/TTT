@@ -1,5 +1,5 @@
 #include "Socket.h"
-
+#include<unistd.h>
 
 namespace Socks
 {
@@ -101,7 +101,11 @@ namespace Socks
 		if (ipversion == IPVersion::IPv4)
 		{
 			sockaddr_in addr = {};
-			int len = sizeof(sockaddr_in);
+			#ifdef _WIN32
+				int len = sizeof(sockaddr_in);
+			#else
+				socklen_t len = sizeof(sockaddr_in);
+			#endif // _WIN32
 			accepted_conn = accept(handle, reinterpret_cast<sockaddr*>(&addr), &len);
 			if (accepted_conn == INVALID_SOCKET)
 				return SocketResult::GENERIC_ERROR;
@@ -115,7 +119,11 @@ namespace Socks
 		else
 		{
 			sockaddr_in6 addr6 = {};
-			int len = sizeof(sockaddr_in6);
+			#ifdef _WIN32
+				int len = sizeof(sockaddr_in);
+			#else
+				socklen_t len = sizeof(sockaddr_in);
+			#endif // _WIN32
 			accepted_conn = accept(handle, reinterpret_cast<sockaddr*>(&addr6), &len);
 			if (accepted_conn == INVALID_SOCKET)
 				return SocketResult::GENERIC_ERROR;
