@@ -1,0 +1,2 @@
+cmake ../TTT
+make
