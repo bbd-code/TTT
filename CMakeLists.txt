@@ -39,15 +39,14 @@ set(SOURCE_FILES
     ThreadManager.h
     ThreadStorage.h
     socks.h
-    Player.cpp
-    Player.h
-    TicTacToeServer.cpp
-    TicTacToeServer.h
+  
 )
 
 # Добавляем файлы из папки Room
 file(GLOB ROOM_SOURCES "Room/*.cpp")
 file(GLOB ROOM_HEADERS "Room/*.h")
+file(GLOB TTT_HEADERS "TicTacToeServ/*.h")
+file(GLOB TTT_SOURCES "TicTacToe/*.cpp")
 
 # Генерация исполняемого файла
-add_executable(TicTacToeServer ${SOURCE_FILES} ${ROOM_SOURCES} ${ROOM_HEADERS})
+add_executable(TicTacToeServer ${SOURCE_FILES} ${ROOM_SOURCES} ${ROOM_HEADERS} ${TTT_HEADERS} ${TTT_SOURCES})
